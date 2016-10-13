@@ -1,0 +1,6 @@
+C:\Users\Василий\Desktop\Прога\DoubleLinkedList\DoubleLinkedList\bin\Debug\DoubleLinkedList.exe.config
+C:\Users\Василий\Desktop\Прога\DoubleLinkedList\DoubleLinkedList\obj\Debug\DoubleLinkedList.csprojResolveAssemblyReference.cache
+C:\Users\Василий\Desktop\Прога\DoubleLinkedList\DoubleLinkedList\bin\Debug\DoubleLinkedList.exe
+C:\Users\Василий\Desktop\Прога\DoubleLinkedList\DoubleLinkedList\bin\Debug\DoubleLinkedList.pdb
+C:\Users\Василий\Desktop\Прога\DoubleLinkedList\DoubleLinkedList\obj\Debug\DoubleLinkedList.exe
+C:\Users\Василий\Desktop\Прога\DoubleLinkedList\DoubleLinkedList\obj\Debug\DoubleLinkedList.pdb
