@@ -6,48 +6,9 @@ using System.Threading.Tasks;
 
 namespace DoubleLinkedList
 {
-    class Program
+    class WorkingClass
     {
-        public static Person _firstPerson = null;
-
-        static void Main(string[] args)
-        {
-            string st = "";
-
-            while (true)
-            {
-                Console.Clear();
-
-                Console.WriteLine("1. Вывести все элементы");
-                Console.WriteLine("2. Вывести все элементы в обратном порядке");
-                Console.WriteLine("3. Добавить элемент по индексу");
-                Console.WriteLine("4. Удалить элемент по индексу");
-                Console.WriteLine("5. Удалить все элементы с заданной фамилией");
-                Console.WriteLine("6. Сортировка элементов по фамилии");
-                Console.WriteLine("7. Сохранение списка в файл");
-                Console.WriteLine("8. Загрузка списка из файла");
-
-                st = Console.ReadLine();
-
-                switch (st)
-                {
-                    case "1": WorkingClass.showList(_firstPerson); break;
-                    case "2": WorkingClass.showListRevers(_firstPerson); break;
-                    case "3": Console.WriteLine("Введите индекс"); WorkingClass.insertElement(Convert.ToInt32(Console.ReadLine()), _firstPerson); break;
-                    case "4": Console.WriteLine("Введите индекс"); WorkingClass.deleteElement(Convert.ToInt32(Console.ReadLine()), _firstPerson); break;
-                    case "5": Console.WriteLine("Введите фамилию"); WorkingClass.deleteElement(Console.ReadLine(), _firstPerson); break;
-                    case "6": WorkingClass.sortList(_firstPerson); break;
-                    case "7": WorkingClass.saveList(_firstPerson); break;
-                    case "8": WorkingClass.loadList(_firstPerson); break;
-                    default: Console.WriteLine("Введен невенрый номер"); break;
-                }
-
-                Console.ReadKey();
-                st = "";
-            }
-        }
-
-        /*public static void sortList()
+        public static void sortList(out Person _firstPerson)
         {
             Person _currentPerson = _firstPerson;
 
@@ -74,7 +35,7 @@ namespace DoubleLinkedList
                         _currentPerson = _currentPerson._nextPerson;
 
                         if (_newPerson == _firstPerson)
-                        {                           
+                        {
                             _currentPerson._previousPerson = null;
                             _newPerson._previousPerson = _currentPerson;
                             _newPerson._nextPerson = _currentPerson._nextPerson;
@@ -93,7 +54,7 @@ namespace DoubleLinkedList
                                 _newPerson._nextPerson = _currentPerson._nextPerson;
                                 _currentPerson._nextPerson._previousPerson = _newPerson;
                                 _currentPerson._nextPerson = _newPerson;
-                                
+
                             }
                             else
                             {
@@ -189,23 +150,23 @@ namespace DoubleLinkedList
             Console.WriteLine("Список отсортирован");
         }
 
-        public static void deleteElement(string _surnameToDelete)
+        public static void deleteElement(string _surnameToDelete, out Person _firstPerson)
         {
             Person _currentPerson = _firstPerson;
-            while(_currentPerson != null)
+            while (_currentPerson != null)
             {
-                if(_currentPerson._data._surname == _surnameToDelete)
+                if (_currentPerson._data._surname == _surnameToDelete)
                 {
-                    if(_currentPerson == _firstPerson)
+                    if (_currentPerson == _firstPerson)
                     {
                         _firstPerson = _currentPerson._nextPerson;
                         _currentPerson._nextPerson._previousPerson = null;
                     }
-                    if(_currentPerson._nextPerson == null)
+                    if (_currentPerson._nextPerson == null)
                     {
                         _currentPerson._previousPerson._nextPerson = null;
                     }
-                    if(_currentPerson._nextPerson != null && _currentPerson._previousPerson != null)
+                    if (_currentPerson._nextPerson != null && _currentPerson._previousPerson != null)
                     {
                         _currentPerson._previousPerson._nextPerson = _currentPerson._nextPerson;
                         _currentPerson._nextPerson._previousPerson = _currentPerson._previousPerson._nextPerson;
@@ -216,7 +177,7 @@ namespace DoubleLinkedList
             Console.WriteLine("Элементы с фамилией: {0} удалены", _surnameToDelete);
         }
 
-        public static void loadList()
+        public static void loadList(out Person _firstPerson)
         {
             try
             {
@@ -254,7 +215,7 @@ namespace DoubleLinkedList
 
         }
 
-        public static void saveList()
+        public static void saveList(out Person _firstPerson)
         {
             if (_firstPerson != null)
             {
@@ -265,7 +226,7 @@ namespace DoubleLinkedList
                     Person _currentPerson = _firstPerson;
                     while (_currentPerson != null)
                     {
-                        str = _currentPerson._data._surname + " " + _currentPerson._data._growth + " " + _currentPerson._data._bithDate.Day + "." +  _currentPerson._data._bithDate.Month + "." +  _currentPerson._data._bithDate.Year;
+                        str = _currentPerson._data._surname + " " + _currentPerson._data._growth + " " + _currentPerson._data._bithDate.Day + "." + _currentPerson._data._bithDate.Month + "." + _currentPerson._data._bithDate.Year;
                         _writer.WriteLine(str);
                         _currentPerson = _currentPerson._nextPerson;
                     }
@@ -277,7 +238,7 @@ namespace DoubleLinkedList
                 Console.WriteLine("Список пуст");
         }
 
-        public static void showList()
+        public static void showList(out Person _firstPerson)
         {
             if (_firstPerson == null)
                 Console.WriteLine("Список пуст");
@@ -292,7 +253,7 @@ namespace DoubleLinkedList
             }
         }
 
-        public static void showListRevers()
+        public static void showListRevers(out Person _firstPerson)
         {
             if (_firstPerson == null)
                 Console.WriteLine("Список пуст");
@@ -309,8 +270,7 @@ namespace DoubleLinkedList
                 }
             }
         }
-
-        public static void deleteElement(int index)
+        public static void deleteElement(int index, out Person _firstPerson)
         {
             if (_firstPerson == null)
                 Console.WriteLine("Список пуст");
@@ -354,8 +314,8 @@ namespace DoubleLinkedList
                 }
             }
         }
-        
-        public static void insertElement(int index)
+
+        public static void insertElement(int index, out Person _firstPerson)
         {
             Console.WriteLine("Введите через пробел Фамилию, рост, дату рождения");
             string[] _data = Console.ReadLine().Split(' ');
@@ -414,33 +374,6 @@ namespace DoubleLinkedList
 
                 }
             }
-
-        }*/
-
-        
-
-        
-    }
-    public class Person
-    {
-        public Person _previousPerson;
-
-        public Data _data { get; set; }
-
-        public Person _nextPerson;
-
-        public Person(Data dt)
-        {
-            this._data = dt;
-            this._nextPerson = null;
-            this._previousPerson = null;
         }
-    }
-
-    public class Data
-    {
-        public string _surname { get; set; }
-        public int _growth { get; set; }
-        public DateTime _bithDate { get; set; }
     }
 }
